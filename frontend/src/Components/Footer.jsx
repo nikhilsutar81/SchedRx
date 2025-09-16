@@ -1,5 +1,6 @@
 import React from 'react';
 import { assets } from '../assets/assets';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   return (
@@ -19,10 +20,9 @@ const Footer = () => {
         <div>
           <p className='text-xl font-medium mb-5'>COMPANY</p>
           <ul className='flex flex-col gap-2 text-gray-600'>
-            <li>Home</li>
-            <li>About us </li>
-            <li>Contact us</li>
-            <li>Privacy Policy</li>
+            <Link to='/' onClick={() => window.scrollTo(0, 0)}><li className='cursor-pointer'>Home</li></Link>
+            <Link to='/about' onClick={() => window.scrollTo(0, 0)}><li className='cursor-pointer'>About us</li></Link>
+            <Link to='/contact' onClick={() => window.scrollTo(0, 0)}><li className='cursor-pointer'>Contact us</li></Link>
           </ul>
         </div>
 
@@ -32,7 +32,7 @@ const Footer = () => {
           <p className='text-xl font-medium mb-5'> GET IN TOUCH</p>
           <ul className='flex flex-col gap-2 text-gray-600'>
             <li>+91 923XXXXXXXX</li>
-            <li>Prescripto@gmail.com</li>
+            <li>SchedRx@gmail.com</li>
           </ul>
         </div>
 
@@ -41,7 +41,7 @@ const Footer = () => {
 
       <div>
         <hr />
-        <p className='py-5 text-sm text-center'>Copyright 2024 @ Prescripto - All Right Reserved.</p>
+        <p className='py-5 text-sm text-center'>Copyright 2025 @ SchedRx - All Right Reserved.</p>
       </div>
     </div>
   );
