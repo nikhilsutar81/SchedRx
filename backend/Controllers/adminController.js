@@ -224,6 +224,27 @@ const adminDashboard = async (req, res) => {
   }
 };
 
+//API to Remove Doctor from Admin Panel
+const removeDoctor = async (req, res) => {
+  try {
+    const { id } = req.body;
+    const doctor = await doctorModel.findById(id);
+    if (!doctor) {
+      return res.json({ success: false, message: "Doctor not found" });
+    }
+    await doctorModel.findByIdAndDelete(id);
+    return res.json({
+      success: true,
+      message: "Doctor Removed Successfully",
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      success: false,
+      message: "Error removing doctor",
+    });
+  }
+};
 
 
-export { addDoctor, loginAdmin, allDoctors, allAppointments, appointmentCancel, adminDashboard };
+export { addDoctor, loginAdmin, allDoctors, allAppointments, appointmentCancel, adminDashboard, removeDoctor };
