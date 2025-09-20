@@ -69,4 +69,6 @@
 **Email:** admin@SchedRx.com  
 **Password:** ILOVE00
 
-
+- **DOCTOR PANEL**
+**Email:** doctorfullname.com  
+**Password:** doctor123
