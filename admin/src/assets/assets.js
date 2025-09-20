@@ -1,5 +1,5 @@
 import add_icon from './add_icon.svg'
-import admin_logo from './admin_logo.svg'
+import logo from './logo.png'
 import appointment_icon from './appointment_icon.svg'
 import cancel_icon from './cancel_icon.svg'
 import doctor_icon from './doctor_icon.svg'
@@ -14,7 +14,7 @@ import patients_icon from './patients_icon.svg'
 
 export const assets = {
     add_icon,
-    admin_logo,
+    logo,
     appointment_icon,
     cancel_icon,
     doctor_icon,
