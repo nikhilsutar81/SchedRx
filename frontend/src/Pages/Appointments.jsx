@@ -86,7 +86,7 @@ const Appointments = () => {
   const bookAppointment = async () => {
      if(!token){
        toast.warn("Login to Book Appointment")
-       return navigate('/login');
+       return navigate('/login', { state: { from: `/appointments/${docId}` } });
      }
      
      try {
@@ -184,7 +184,7 @@ const Appointments = () => {
             ))}
           </div>
           <div className="flex items-center gap-3 w-full overflow-x-scroll mt-6">
-            {docslots.length && docslots[slotIndex].map((item,index)=>(
+            {docslots.length > 0 && docslots[slotIndex] && docslots[slotIndex].map((item,index)=>(
                 <p onClick={()=> setSlotTime(item.time)} className={`text-sm font-light cursor-pointer px-5 py-2 rounded-full flex-shrink-0 ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-500 border border-gray-400' }`} key={index}>{item.time.toLowerCase()}</p>
             ))}
           </div>

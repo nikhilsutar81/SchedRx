@@ -66,7 +66,5 @@
 # Credentials:
 
 - **ADMIN PANEL**  
-**Email:** admin@SchedRx.com  
-**Password:** ILOVE00
-
-
+**Email:** admin@schedrx.com  
+**Password:** ilove00
