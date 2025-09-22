@@ -18,6 +18,7 @@ const Appointments = () => {
   const [slotTime, setSlotTime] = useState("");
 
   const getAvailableSlots = async () => {
+    if (!docInfo) return;
     setDocSlots([]);
 
     //Getting Current Date
