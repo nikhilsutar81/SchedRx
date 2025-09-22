@@ -18,7 +18,6 @@ const Appointments = () => {
   const [slotTime, setSlotTime] = useState("");
 
   const getAvailableSlots = async () => {
-    if (!docInfo) return;
     setDocSlots([]);
 
     //Getting Current Date
@@ -87,14 +86,9 @@ const Appointments = () => {
   const bookAppointment = async () => {
      if(!token){
        toast.warn("Login to Book Appointment")
-       return navigate('/login', { state: { from: `/appointments/${docId}` } });
+       return navigate('/login');
      }
      
-     if (!slotTime) {
-      toast.warn("Please select a time slot.");
-      return;
-    }
-
      try {
        const date = docslots[slotIndex][0].datetime;
        let day = date.getDate()
@@ -190,7 +184,7 @@ const Appointments = () => {
             ))}
           </div>
           <div className="flex items-center gap-3 w-full overflow-x-scroll mt-6">
-            {docslots.length > 0 && docslots[slotIndex]?.map((item,index)=>(
+            {docslots.length && docslots[slotIndex].map((item,index)=>(
                 <p onClick={()=> setSlotTime(item.time)} className={`text-sm font-light cursor-pointer px-5 py-2 rounded-full flex-shrink-0 ${item.time === slotTime ? 'bg-primary text-white' : 'text-gray-500 border border-gray-400' }`} key={index}>{item.time.toLowerCase()}</p>
             ))}
           </div>

@@ -31,12 +31,8 @@ const Footer = () => {
         <div>
           <p className='text-xl font-medium mb-5'> GET IN TOUCH</p>
           <ul className='flex flex-col gap-2 text-gray-600'>
-            <li>{assets.contact_info?.phone}</li>
-            <li>
-              <a href={`mailto:${assets.contact_info?.email}`} className="hover:text-primary">
-                {assets.contact_info?.email}
-              </a>
-            </li>
+            <li>+91 923XXXXXXXX</li>
+            <li>SchedRx@gmail.com</li>
           </ul>
         </div>
 
@@ -45,7 +41,7 @@ const Footer = () => {
 
       <div>
         <hr />
-        <p className='py-5 text-sm text-center'>Copyright 2024 @ SchedRx - All Right Reserved.</p>
+        <p className='py-5 text-sm text-center'>Copyright 2025 @ SchedRx - All Right Reserved.</p>
       </div>
     </div>
   );
