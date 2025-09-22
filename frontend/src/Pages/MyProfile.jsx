@@ -91,20 +91,25 @@ const MyProfile = () => {
           )}
           <p className="font-medium text-neutral-800 text-base">Address:</p>
           {isEdit ? (
-            
-              <input
-                type="text"
-                value={userData.address}
-                className="bg-gray-200 max-w-52 p-1 pl-3 rounded border border-gray-300 outline-indigo-600"
-                onChange={(e) =>
-                  setUserData((prev) => ({ ...prev, address: e.target.value }))
-                }
-              />
-            
+            <input
+              type="text"
+              value={typeof userData.address === "object" && userData.address !== null ? `${userData.address.line1 || ""}, ${userData.address.line2 || ""}` : userData.address}
+              className="bg-gray-200 max-w-52 p-1 pl-3 rounded border border-gray-300 outline-indigo-600"
+              onChange={(e) =>
+                setUserData((prev) => ({ ...prev, address: e.target.value }))
+              }
+            />
           ) : (
             <p className="text-base">
-              {userData.address}
-              <br />
+              {typeof userData.address === "object" && userData.address !== null ? (
+                <>
+                  {userData.address.line1}
+                  <br />
+                  {userData.address.line2}
+                </>
+              ) : (
+                userData.address
+              )}
             </p>
           )}
         </div>
