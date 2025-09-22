@@ -46,17 +46,14 @@
 
 # SchedRx client side
 <img width="1899" height="916" alt="Screenshot 2025-09-15 122848" src="https://github.com/user-attachments/assets/24499958-5e25-4e75-b681-5b706f1f3c2e" />
-
 # SchedRx Admin Panel:
 <img width="1898" height="911" alt="Screenshot 2025-09-20 201644" src="https://github.com/user-attachments/assets/c0c6ed2f-bdf9-4052-b7f6-b60298764b8c" />
-
 # Doctor's Panel:
 <img width="1898" height="908" alt="Screenshot 2025-09-20 201845" src="https://github.com/user-attachments/assets/5922ae0b-df4f-4734-a98a-d0bd2f5b8bdf" />
 
 ---
 
 # Assets Credits:
-
 - https://www.pexels.com/
 - https://unsplash.com/
 - https://www.freepik.com/
@@ -64,9 +61,6 @@
 ---
 
 # Credentials:
-
 - **ADMIN PANEL**  
-**Email:** admin@SchedRx.com  
-**Password:** ILOVE00
-
-
+**Email:** admin@schedrx.com  
+**Password:** yourpassword

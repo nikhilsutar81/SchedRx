@@ -31,10 +31,10 @@ const Footer = () => {
         <div>
           <p className='text-xl font-medium mb-5'> GET IN TOUCH</p>
           <ul className='flex flex-col gap-2 text-gray-600'>
-            <li>+91 923XXXXXXXX</li>
+            <li>{assets.contact_info.phone}</li>
             <li>
-              <a href="mailto:SchedRx@gmail.com" className="hover:text-primary">
-                SchedRx@gmail.com
+              <a href={`mailto:${assets.contact_info.email}`} className="hover:text-primary">
+                {assets.contact_info.email}
               </a>
             </li>
           </ul>
