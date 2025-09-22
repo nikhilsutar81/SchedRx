@@ -90,6 +90,11 @@ const Appointments = () => {
        return navigate('/login', { state: { from: `/appointments/${docId}` } });
      }
      
+     if (!slotTime) {
+      toast.warn("Please select a time slot.");
+      return;
+    }
+
      try {
        const date = docslots[slotIndex][0].datetime;
        let day = date.getDate()
