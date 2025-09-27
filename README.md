@@ -13,7 +13,6 @@
 - Tech Stack
 - Screenshots
 - Assets Credits
-- Credentials
 
 ---
 
@@ -61,12 +60,5 @@
 - https://unsplash.com/
 - https://www.freepik.com/
 
----
-
-# Credentials:
-
-- **ADMIN PANEL**  
-**Email:** admin@SchedRx.com  
-**Password:** ILOVE00
 
 
