@@ -46,10 +46,19 @@ const Appointments = () => {
 
       let timeSlots = [];
 
+      // Helper to get IST date
+      const getISTDate = (date) => {
+        // date is local, convert to UTC then add 5.5 hours
+        const utc = date.getTime() + (date.getTimezoneOffset() * 60000);
+        return new Date(utc + (5.5 * 60 * 60 * 1000));
+      };
+
       while (currentDate < endTime) {
-        let formattedTime = currentDate.toLocaleTimeString([], {
+        let formattedTime = currentDate.toLocaleTimeString('en-IN', {
           hour: "2-digit",
           minute: "2-digit",
+          hour12: true,
+          timeZone: "Asia/Kolkata"
         });
 
         let day = currentDate.getDate();
@@ -61,10 +70,11 @@ const Appointments = () => {
 
         const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true ;
 
-        // Prevent showing past slots for today
-        const now = new Date();
-        const isToday = currentDate.getDate() === now.getDate() && currentDate.getMonth() === now.getMonth() && currentDate.getFullYear() === now.getFullYear();
-        const isFutureSlot = !isToday || currentDate > now;
+        // Prevent showing past slots for today (using IST)
+        const nowIST = getISTDate(new Date());
+        const slotIST = getISTDate(currentDate);
+        const isToday = slotIST.getDate() === nowIST.getDate() && slotIST.getMonth() === nowIST.getMonth() && slotIST.getFullYear() === nowIST.getFullYear();
+        const isFutureSlot = !isToday || slotIST > nowIST;
 
         if (isSlotAvailable && isFutureSlot) {
           //Add Slots to Array
