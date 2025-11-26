@@ -98,10 +98,12 @@ const Login = () => {
             placeholder="Password"
             required
           />
-          <p className="text-xs text-gray-500 mt-1">
-            Password must be at least 8 characters and include:
-            <br />- At least one uppercase letter<br />- At least one lowercase letter<br />- At least one number<br />- At least one special character
-          </p>
+          {state === "Sign Up" && (
+            <p className="text-xs text-gray-500 mt-1">
+              Password must be at least 8 characters and include:
+              <br />- At least one uppercase letter<br />- At least one lowercase letter<br />- At least one number<br />- At least one special character
+            </p>
+          )}
         </div>
         <button type="submit" className="bg-primary text-white w-full py-2 rounded-md text-base my-5">
           {state === "Sign Up" ? "Create Account" : "Login"}
