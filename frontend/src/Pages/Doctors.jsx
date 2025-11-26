@@ -10,7 +10,8 @@ const Doctors = () => {
   const navigate = useNavigate();
   const applyFilter = () => {
     if (speciality) {
-      setFilterDoc(doctors.filter((doc) => doc.speciality === speciality));
+      // Normalize both sides for case-insensitive match
+      setFilterDoc(doctors.filter((doc) => doc.speciality.toLowerCase() === speciality.toLowerCase()));
     } else {
       setFilterDoc(doctors);
     }
