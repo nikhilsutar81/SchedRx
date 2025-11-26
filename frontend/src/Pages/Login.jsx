@@ -60,11 +60,17 @@ const Login = () => {
   <p>Full Name</p>
   <input
     className="border border-zinc-300 rounded w-full p-2 mt-2 outline-indigo-600"
-    onChange={(e) => setName(e.target.value)}
+    onChange={(e) => {
+      // Only allow alphabets and spaces
+      const val = e.target.value.replace(/[^a-zA-Z ]/g, "");
+      setName(val);
+    }}
     value={name}
     type="text"
     placeholder="Full Name"
     required
+    pattern="[A-Za-z ]+"
+    title="Only alphabets and spaces allowed"
   />
 </div>
 }
@@ -92,6 +98,10 @@ const Login = () => {
             placeholder="Password"
             required
           />
+          <p className="text-xs text-gray-500 mt-1">
+            Password must be at least 8 characters and include:
+            <br />- At least one uppercase letter<br />- At least one lowercase letter<br />- At least one number<br />- At least one special character
+          </p>
         </div>
         <button type="submit" className="bg-primary text-white w-full py-2 rounded-md text-base my-5">
           {state === "Sign Up" ? "Create Account" : "Login"}
