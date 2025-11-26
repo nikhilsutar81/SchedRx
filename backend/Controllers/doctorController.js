@@ -25,16 +25,9 @@ const changeAvailability = async (req, res) => {
 
 //API to get all Doctors List for Frontend
 const doctorList = async (req, res) => {
-  res.setHeader("Access-Control-Allow-Origin", "https://schedrx-client.vercel.app");
-  res.setHeader("Access-Control-Allow-Credentials", "true");
-  res.setHeader("Access-Control-Allow-Methods", "GET,POST,PUT,DELETE,OPTIONS");
-  res.setHeader("Access-Control-Allow-Headers", "Content-Type,Authorization");
-  if (req.method === "OPTIONS") {
-    res.status(200).end();
-    return;
-  }
   try {
     const doctors = await doctorModel.find({}).select(["-password", "-email"]);
+
     return res.json({
       success: true,
       doctors,

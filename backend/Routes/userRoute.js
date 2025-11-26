@@ -1,8 +1,5 @@
 import express from 'express';
 import { registerUser, loginUser, getProfile, updateProfile,bookAppointment,listAppointment, cancelAppointment } from '../Controllers/userController.js';
-import { sendOtp, verifyOtp } from '../Controllers/otpController.js';
-userRouter.post('/send-otp', sendOtp);
-userRouter.post('/verify-otp', verifyOtp);
 import authUser from '../Middlewares/authUser.js';
 import upload from '../Middlewares/multer.js';
 
