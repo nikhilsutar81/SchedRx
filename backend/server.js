@@ -15,7 +15,10 @@ connectCloudinary()
 
 //middlewares
 app.use(express.json())
-app.use(cors())
+app.use(cors({
+    origin: "https://schedrx-client.vercel.app",
+    credentials: true
+}))
 
 //Api EndPoints
 app.use('/api/admin',adminRouter)
