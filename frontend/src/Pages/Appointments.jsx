@@ -57,18 +57,22 @@ const Appointments = () => {
         let year = currentDate.getFullYear();
 
         const slotDate = day + "_" + month + "_" + year ;
-        const slotTime =formattedTime;
+        const slotTime = formattedTime;
 
         const isSlotAvailable = docInfo.slots_booked[slotDate] && docInfo.slots_booked[slotDate].includes(slotTime) ? false : true ;
 
-        if(isSlotAvailable){
-        //Add Slots to Array
-        timeSlots.push({
-          datetime: new Date(currentDate),
-          time: formattedTime,
-        });
+        // Prevent showing past slots for today
+        const now = new Date();
+        const isToday = currentDate.getDate() === now.getDate() && currentDate.getMonth() === now.getMonth() && currentDate.getFullYear() === now.getFullYear();
+        const isFutureSlot = !isToday || currentDate > now;
+
+        if (isSlotAvailable && isFutureSlot) {
+          //Add Slots to Array
+          timeSlots.push({
+            datetime: new Date(currentDate),
+            time: formattedTime,
+          });
         }
-        
 
         //Increment Current Time By 30 mins.
         currentDate.setMinutes(currentDate.getMinutes() + 30);
