@@ -53,17 +53,24 @@ const Appointments = () => {
         return new Date(utc + (5.5 * 60 * 60 * 1000));
       };
 
-      while (currentDate < endTime) {
-        let formattedTime = currentDate.toLocaleTimeString('en-IN', {
-          hour: "2-digit",
-          minute: "2-digit",
+      // Helper to format time as "hh:mm am/pm"
+      const formatISTTime = (date) => {
+        return date.toLocaleTimeString('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
           hour12: true,
-          timeZone: "Asia/Kolkata"
-        });
+          timeZone: 'Asia/Kolkata'
+        }).replace(/ /g, '').toLowerCase();
+      };
 
-        let day = currentDate.getDate();
-        let month = currentDate.getMonth()+1;
-        let year = currentDate.getFullYear();
+      while (currentDate < endTime) {
+        // Always use IST for slot time
+        const slotIST = getISTDate(currentDate);
+        const formattedTime = formatISTTime(slotIST); // e.g., "01:00pm"
+
+        let day = slotIST.getDate();
+        let month = slotIST.getMonth()+1;
+        let year = slotIST.getFullYear();
 
         const slotDate = day + "_" + month + "_" + year ;
         const slotTime = formattedTime;
@@ -72,20 +79,24 @@ const Appointments = () => {
 
         // Prevent showing past slots for today (using IST)
         const nowIST = getISTDate(new Date());
-        const slotIST = getISTDate(currentDate);
         const isToday = slotIST.getDate() === nowIST.getDate() && slotIST.getMonth() === nowIST.getMonth() && slotIST.getFullYear() === nowIST.getFullYear();
-        const isFutureSlot = !isToday || slotIST > nowIST;
+        // Compare hours/minutes for today
+        const isFutureSlot = !isToday || (slotIST.getHours() > nowIST.getHours() || (slotIST.getHours() === nowIST.getHours() && slotIST.getMinutes() > nowIST.getMinutes()));
 
         if (isSlotAvailable && isFutureSlot) {
           //Add Slots to Array
           timeSlots.push({
-            datetime: new Date(currentDate),
+            datetime: new Date(slotIST),
             time: formattedTime,
           });
         }
 
         //Increment Current Time By 30 mins.
         currentDate.setMinutes(currentDate.getMinutes() + 30);
+      }
+      // Debug: log today's slots
+      if (i === 0) {
+        console.log('Today\'s slots:', timeSlots.map(s => s.time));
       }
 
       setDocSlots((prev) => [...prev, timeSlots]);
