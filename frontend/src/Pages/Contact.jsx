@@ -3,31 +3,38 @@ import { assets } from "../assets/assets";
 
 const Contact = () => {
   return (
-    <div className="bg-gradient-to-r from-indigo-50 to-white min-h-[80vh] py-10">
-      <div className="text-center mb-10">
-        <p className="text-3xl md:text-4xl text-primary font-bold tracking-wide">Contact Us</p>
-        <p className="text-gray-500 mt-2">We'd love to hear from you!</p>
+    <div>
+      <div className="text-center text-2xl pt-10 text-gray-500">
+        <p className="text-xl md:text-2xl text-neutral-700 font-semibold">
+          CONTACT US
+        </p>
       </div>
-      <div className="flex flex-col md:flex-row gap-12 justify-center items-center mb-20">
-        <img className="w-full md:max-w-[360px] rounded-xl shadow-lg" src={assets.contact_image} alt="Contact" />
-        <div className="bg-white rounded-2xl shadow-xl p-8 flex flex-col gap-6 min-w-[300px] max-w-[400px] border border-gray-100">
-          <div>
-            <p className="font-semibold text-lg text-primary mb-2 flex items-center gap-2"><i className="fa fa-map-marker text-primary"></i> Our Office</p>
-            <p className="text-gray-600">00000 Willms Station<br />Suite 078, New Delhi, India</p>
-          </div>
-          <div>
-            <p className="font-semibold text-lg text-primary mb-2 flex items-center gap-2"><i className="fa fa-phone text-primary"></i> Phone</p>
-            <p className="text-gray-600">+91 923XXXXXXXX</p>
-          </div>
-          <div>
-            <p className="font-semibold text-lg text-primary mb-2 flex items-center gap-2"><i className="fa fa-envelope text-primary"></i> Email</p>
-            <p className="text-gray-600">SchedRx@gmail.com</p>
-          </div>
-          <div>
-            <p className="font-semibold text-lg text-primary mb-2 flex items-center gap-2"><i className="fa fa-briefcase text-primary"></i> Careers at SchedRx</p>
-            <p className="text-gray-600">Learn more about our teams and job openings.</p>
-            <button className="bg-primary text-white px-8 py-3 rounded-full font-semibold shadow hover:bg-indigo-700 transition-all mt-2">Explore Jobs</button>
-          </div>
+
+      <div className="my-10 flex flex-col justify-center md:flex-row gap-10 mb-28 text-sm">
+        <img
+          className="w-full md:max-w-[360px]"
+          src={assets.contact_image}
+          alt=""
+        />
+        <div className="flex flex-col justify-center items-start gap-6">
+          <p className="font-semibold text-lg text-gray-600">OUR OFFICE</p>
+          <p className="text-gray-500">
+            00000 Willms Station <br />
+            Suite 078, New Delhi, India
+          </p>
+          <p className="text-gray-500">
+            Tel: +91 923XXXXXXXX <br />
+            Email: prescripto@gmail.com
+          </p>
+          <p className="font-semibold text-lg text-gray-600">
+            CAREERS AT PRESCRIPTO
+          </p>
+          <p lassName="text-gray-500">
+            Learn more about our teams and job openings.
+          </p>
+          <button className="border border-black px-8 py-4 text-sm hover:text-white transition-all duration-300 hover:bg-black">
+            Explore Jobs
+          </button>
         </div>
       </div>
     </div>
