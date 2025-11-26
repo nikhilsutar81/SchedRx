@@ -151,9 +151,14 @@ const MyAppointments = () => {
                 </button>
               )}
               {item.cancelled && !item.isCompleted && (
-                <button className="sm:min-w-48 py-2 border rounded text-center text-sm border-red-500 text-red-500 bg-red-50">
-                  Appointment Cancelled
-                </button>
+                <div>
+                  <button className="sm:min-w-48 py-2 border rounded text-center text-sm border-red-500 text-red-500 bg-red-50">
+                    Appointment Cancelled
+                  </button>
+                  {item.cancelReason && (
+                    <p className="text-xs text-red-500 mt-1">Reason: {item.cancelReason}</p>
+                  )}
+                </div>
               )}
               {
                 item.isCompleted && <button className="text-sm font-semibold bg-green-50 text-green-500 text-center sm:min-w-48 py-2 border rounded border-green-500">Completed</button>
