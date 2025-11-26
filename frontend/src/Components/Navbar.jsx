@@ -40,7 +40,7 @@ const Navbar = () => {
           <hr className='border-none outline-none h-0.5 bg-primary w-3/5 m-auto hidden'  />
         </NavLink>
 
-        <a className='px-4 py-1 border border-gray-800 rounded-full hover:bg-primary hover:text-white hover:border-none transition-all duration-300' href={import.meta.env.VITE_ADMIN_URL}>Admin</a>
+
 
       </ul>
       <div className='flex items-center gap-4'>
@@ -77,7 +77,7 @@ const Navbar = () => {
     ? <p className='px-4 py-2 rounded inline-block' onClick={logout}>LOGOUT</p> 
     : <NavLink  onClick={()=>setShowMenu(false)} to='/login'><p className='px-4 py-2 rounded inline-block'>LOGIN</p></NavLink>
     }
-    <a className='px-4 py-2 rounded inline-block' href={import.meta.env.VITE_ADMIN_URL}>ADMIN LOGIN</a>
+
   </ul>
 </div>
 </div>
