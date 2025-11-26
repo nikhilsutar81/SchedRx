@@ -98,10 +98,34 @@ const Login = () => {
             placeholder="Password"
             required
           />
-          <p className="text-xs text-gray-500 mt-1">
-            Password must be at least 8 characters and include:
-            <br />- At least one uppercase letter<br />- At least one lowercase letter<br />- At least one number<br />- At least one special character
-          </p>
+          <div className="text-xs mt-2 p-3 rounded bg-blue-50 border border-blue-200">
+            <span className="font-semibold text-blue-700 flex items-center mb-2">
+              <svg className="w-4 h-4 mr-1 inline-block text-blue-500" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z" /></svg>
+              Password must meet all criteria:
+            </span>
+            <ul className="list-none pl-0 space-y-1">
+              <li className="flex items-center text-blue-600">
+                <svg className="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+                At least <span className="font-bold">8 characters</span>
+              </li>
+              <li className="flex items-center text-blue-600">
+                <svg className="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+                <span className="font-bold">One uppercase</span> letter
+              </li>
+              <li className="flex items-center text-blue-600">
+                <svg className="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+                <span className="font-bold">One lowercase</span> letter
+              </li>
+              <li className="flex items-center text-blue-600">
+                <svg className="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+                <span className="font-bold">One number</span>
+              </li>
+              <li className="flex items-center text-blue-600">
+                <svg className="w-3 h-3 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20"><circle cx="10" cy="10" r="10" /></svg>
+                <span className="font-bold">One special character</span>
+              </li>
+            </ul>
+          </div>
         </div>
         <button type="submit" className="bg-primary text-white w-full py-2 rounded-md text-base my-5">
           {state === "Sign Up" ? "Create Account" : "Login"}
