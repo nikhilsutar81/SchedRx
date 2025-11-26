@@ -43,13 +43,14 @@ const MyProfile = () => {
     <div className="max-w-lg flex flex-col justify-center gap-2 text-sm">
       {
         isEdit 
-        ? <label htmlFor="image">
-           <div className="inline-block relative cursor-pointer">
-            <img className="w-36 h-36 rounded-lg opacity-90" src={image ? URL.createObjectURL(image) : userData.image} alt="" />
-            <img className="w-10 absolute bottom-12 right-12" src={image ? '' : assets.upload_icon} alt="" />
-           </div>
-           <input onChange={(e)=> setImage(e.target.files[0])} type="file" id="image" hidden />
-        </label>
+      ? <label htmlFor="image">
+        <div className="inline-block relative cursor-pointer">
+        <img className="w-36 h-36 rounded-lg opacity-90" src={image ? URL.createObjectURL(image) : userData.image} alt="" />
+        <img className="w-10 absolute bottom-12 right-12" src={image ? '' : assets.upload_icon} alt="" />
+        </div>
+        <input onChange={(e)=> setImage(e.target.files[0])} type="file" id="image" accept="image/png, image/jpeg" hidden />
+        <p className="text-xs text-gray-500 mt-2">Max size: 2MB. Allowed formats: JPG, PNG.</p>
+      </label>
         : <img className="w-36 h-36 rounded-lg" src={userData.image} alt="" />
       }
       {isEdit
@@ -61,6 +62,7 @@ const MyProfile = () => {
           onChange={(e) =>
             setUserData((prev) => ({ ...prev, name: e.target.value }))
           }
+          placeholder="Full Name"
         />
       ) : (
         <p className="font-medium text-3xl mt-4 text-indigo-800 ">
@@ -123,13 +125,15 @@ const MyProfile = () => {
           {isEdit ? (
             <select
               className="max-w-20 bg-gray-200 p-1 pl-3 rounded border border-gray-300 outline-indigo-600"
-              value={userData.gender}
+              value={userData.gender || ""}
               onChange={(e) =>
                 setUserData((prev) => ({ ...prev, gender: e.target.value }))
               }
             >
+              <option value="">Select Gender</option>
               <option value="Male">Male</option>
               <option value="Female">Female</option>
+              <option value="Other">Other</option>
             </select>
           ) : (
             <p className="text-base">{userData.gender}</p>
