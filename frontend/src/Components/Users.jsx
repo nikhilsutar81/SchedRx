@@ -29,11 +29,11 @@ const users = [
   },
 ];
 
-const cardVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 80 : -80,
+const variants = {
+  enter: (dir) => ({
+    x: dir > 0 ? 80 : -80,
     opacity: 0,
-    scale: 0.95,
+    scale: 0.96,
   }),
   center: {
     x: 0,
@@ -41,10 +41,10 @@ const cardVariants = {
     scale: 1,
     transition: { duration: 0.6, ease: "easeOut" },
   },
-  exit: (direction) => ({
-    x: direction < 0 ? 80 : -80,
+  exit: (dir) => ({
+    x: dir < 0 ? 80 : -80,
     opacity: 0,
-    scale: 0.95,
+    scale: 0.96,
     transition: { duration: 0.4, ease: "easeIn" },
   }),
 };
@@ -53,23 +53,22 @@ const Users = () => {
   const [[index, direction], setIndex] = useState([0, 0]);
 
   const paginate = (dir) => {
-    setIndex(([prev]) => {
-      const next = (prev + dir + users.length) % users.length;
-      return [next, dir];
-    });
+    setIndex(([prev]) => [(prev + dir + users.length) % users.length, dir]);
   };
 
-  // autoplay
   useEffect(() => {
     const id = setInterval(() => paginate(1), 4500);
     return () => clearInterval(id);
   }, []);
 
   return (
-    <section className="py-20 bg-gradient-to-b from-white to-indigo-50">
-      <div className="max-w-5xl mx-auto px-6">
+    <section className="relative py-24 overflow-hidden">
+      {/* Soft background fade */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white via-indigo-50/60 to-white pointer-events-none" />
+
+      <div className="relative max-w-5xl mx-auto px-6">
         {/* Header */}
-        <div className="text-center mb-12">
+        <div className="text-center mb-14">
           <h2 className="text-3xl font-semibold text-gray-900">
             Loved by our users
           </h2>
@@ -80,39 +79,46 @@ const Users = () => {
 
         {/* Carousel */}
         <div className="relative flex items-center justify-center">
-          {/* Arrows */}
+          {/* Left Arrow */}
           <button
             onClick={() => paginate(-1)}
-            className="absolute left-0 z-10 p-3 rounded-full bg-white shadow hover:scale-105 transition"
-            aria-label="Previous"
+            className="absolute left-0 -translate-x-12 p-3 rounded-full bg-white/80 backdrop-blur shadow-md hover:scale-105 transition"
+            aria-label="Previous testimonial"
           >
             ‹
           </button>
 
+          {/* Right Arrow */}
           <button
             onClick={() => paginate(1)}
-            className="absolute right-0 z-10 p-3 rounded-full bg-white shadow hover:scale-105 transition"
-            aria-label="Next"
+            className="absolute right-0 translate-x-12 p-3 rounded-full bg-white/80 backdrop-blur shadow-md hover:scale-105 transition"
+            aria-label="Next testimonial"
           >
             ›
           </button>
 
-          {/* Card */}
           <AnimatePresence custom={direction} mode="wait">
             <motion.div
               key={index}
               custom={direction}
-              variants={cardVariants}
+              variants={variants}
               initial="enter"
               animate="center"
               exit="exit"
-              className="bg-white rounded-2xl shadow-lg p-8 max-w-xl w-full"
+              className="
+                bg-white/90 backdrop-blur
+                rounded-2xl
+                shadow-[0_25px_60px_-15px_rgba(0,0,0,0.15)]
+                p-10
+                max-w-xl
+                w-full
+              "
             >
-              <div className="flex items-center gap-4 mb-5">
+              <div className="flex items-center gap-4 mb-6">
                 <img
                   src={users[index].image}
                   alt={users[index].name}
-                  className="w-14 h-14 rounded-full object-cover border"
+                  className="w-14 h-14 rounded-full object-cover"
                 />
                 <div>
                   <p className="font-semibold text-gray-900">
@@ -124,7 +130,7 @@ const Users = () => {
                 </div>
               </div>
 
-              <p className="text-gray-700 leading-relaxed">
+              <p className="text-gray-700 leading-relaxed text-lg">
                 “{users[index].desc}”
               </p>
 
