@@ -8,6 +8,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const { token, setToken, userData } = useContext(AppContext);
   const [showMenu, setShowMenu] = useState(false);
+  const [showUserMenu, setShowUserMenu] = useState(false);
 
   const logout = () => {
     setToken(false);
@@ -43,30 +44,15 @@ const Navbar = () => {
         />
 
         {/* Nav Links */}
-        <ul className="hidden md:flex items-center gap-2 font-semibold">
+        <ul className="hidden md:flex items-center gap-6 font-semibold">
           {[
             { name: "HOME", path: "/" },
             { name: "ALL DOCTORS", path: "/doctors" },
             { name: "ABOUT", path: "/about" },
             { name: "CONTACT", path: "/contact" },
           ].map((item) => (
-            <NavLink
-              key={item.name}
-              to={item.path}
-              className={({ isActive }) =>
-                isActive ? "text-primary" : ""
-              }
-            >
-              <li
-                className="
-                  py-2 px-4 rounded-lg
-                  hover:bg-indigo-50
-                  transition-all duration-200
-                  cursor-pointer
-                "
-              >
-                {item.name}
-              </li>
+            <NavLink key={item.name} to={item.path} className={({ isActive }) => (isActive ? "text-primary" : "") }>
+              <li className="py-2 px-4 rounded-lg hover:bg-indigo-50 transition-all duration-200 cursor-pointer">{item.name}</li>
             </NavLink>
           ))}
         </ul>
@@ -76,41 +62,51 @@ const Navbar = () => {
           {/* Logged In */}
           {token && userData ? (
             <div className="relative group">
-              <div className="flex items-center gap-2 cursor-pointer">
+              <button
+                onClick={() => setShowUserMenu((p) => !p)}
+                className="flex items-center gap-2 cursor-pointer rounded-full focus:outline-none"
+                aria-expanded={showUserMenu}
+                aria-label="User menu"
+              >
                 <img
                   className="w-8 h-8 rounded-full object-cover"
                   src={userData.image}
                   alt="User"
                 />
                 <img className="w-2.5" src={assets.dropdown_icon} alt="" />
-              </div>
+              </button>
 
-              {/* Dropdown */}
+              {/* Dropdown: visible on hover OR when showUserMenu is true */}
               <motion.div
                 initial={{ opacity: 0, y: 10 }}
-                whileHover={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.25 }}
-                className="
-                  absolute right-0 mt-3
-                  hidden group-hover:block
-                  z-30
-                "
+                animate={{ opacity: showUserMenu ? 1 : 0, y: showUserMenu ? 0 : 10 }}
+                transition={{ duration: 0.18 }}
+                className={`absolute right-0 mt-3 z-30 ${showUserMenu ? "block" : "hidden"} group-hover:block`}
               >
                 <div className="min-w-48 bg-white rounded-xl shadow-lg p-4 flex flex-col gap-3 text-gray-600">
                   <p
-                    onClick={() => navigate("/my-profile")}
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigate("/my-profile");
+                    }}
                     className="hover:text-black cursor-pointer"
                   >
                     My Profile
                   </p>
                   <p
-                    onClick={() => navigate("/my-appointments")}
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      navigate("/my-appointments");
+                    }}
                     className="hover:text-black cursor-pointer"
                   >
                     My Appointments
                   </p>
                   <p
-                    onClick={logout}
+                    onClick={() => {
+                      setShowUserMenu(false);
+                      logout();
+                    }}
                     className="hover:text-red-600 cursor-pointer"
                   >
                     Logout
