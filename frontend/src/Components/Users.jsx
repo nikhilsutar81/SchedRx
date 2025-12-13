@@ -1,108 +1,136 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { assets } from "../assets/assets";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
-const sampleUsers = [
+const users = [
   {
     name: "Asha R.",
-    desc: "Great experience — booked a specialist quickly and the doctor was very helpful.",
+    desc: "Booked a specialist within minutes. The doctor was calm, patient, and very helpful.",
     location: "Borivali",
     image: assets.user1 || assets.profile_pic,
   },
   {
     name: "Rahul M.",
-    desc: "Easy to use and saved me a lot of time. Reminders worked perfectly.",
+    desc: "Super smooth experience. Reminders were accurate and follow-ups became effortless.",
     location: "Dahisar",
     image: assets.user2 || assets.profile_pic,
   },
   {
     name: "Sahil S.",
-    desc: "Friendly staff and simple booking flow. Highly recommended!",
+    desc: "Clean interface, no confusion. Exactly what a healthcare app should feel like.",
     location: "Malad",
     image: assets.user3 || assets.profile_pic,
   },
   {
     name: "Neha P.",
-    desc: "Quick booking and helpful reminders — made follow-ups easy.",
+    desc: "Quick bookings and zero stress. I now use this for my entire family.",
     location: "Andheri",
     image: assets.user4 || assets.profile_pic,
   },
 ];
 
-const Users = () => {
-  const containerRef = useRef(null);
-  const [visibleCount, setVisibleCount] = useState(window.innerWidth >= 768 ? 3 : 1);
-  const [index, setIndex] = useState(0);
+const cardVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? 80 : -80,
+    opacity: 0,
+    scale: 0.95,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+  exit: (direction) => ({
+    x: direction < 0 ? 80 : -80,
+    opacity: 0,
+    scale: 0.95,
+    transition: { duration: 0.4, ease: "easeIn" },
+  }),
+};
 
+const Users = () => {
+  const [[index, direction], setIndex] = useState([0, 0]);
+
+  const paginate = (dir) => {
+    setIndex(([prev]) => {
+      const next = (prev + dir + users.length) % users.length;
+      return [next, dir];
+    });
+  };
+
+  // autoplay
   useEffect(() => {
-    function handleResize() {
-      setVisibleCount(window.innerWidth >= 768 ? 3 : 1);
-    }
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+    const id = setInterval(() => paginate(1), 4500);
+    return () => clearInterval(id);
   }, []);
 
-  const maxIndex = Math.max(0, sampleUsers.length - visibleCount);
-
-  useEffect(() => {
-    // adjust index if visibleCount changed
-    if (index > maxIndex) setIndex(0);
-    // autoplay
-    const id = setInterval(() => {
-      setIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-    }, 3500);
-    return () => clearInterval(id);
-  }, [visibleCount, maxIndex]);
-
-  const prev = () => setIndex((p) => (p <= 0 ? maxIndex : p - 1));
-  const next = () => setIndex((p) => (p >= maxIndex ? 0 : p + 1));
-
-  const slideWidthPercent = 100 / visibleCount; // each slide's width in percent
-
   return (
-    <section className="py-12 bg-white">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="text-3xl font-medium">What our users have to say</h2>
-            <p className="sm:w-1/3 text-sm text-gray-600">Real feedback from people who used our platform to find doctors and book appointments.</p>
-          </div>
-          <div className="flex items-center gap-2">
-            <button aria-label="Previous testimonials" onClick={prev} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
-              ‹
-            </button>
-            <button aria-label="Next testimonials" onClick={next} className="p-2 rounded-full bg-gray-100 hover:bg-gray-200">
-              ›
-            </button>
-          </div>
+    <section className="py-20 bg-gradient-to-b from-white to-indigo-50">
+      <div className="max-w-5xl mx-auto px-6">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-semibold text-gray-900">
+            Loved by our users
+          </h2>
+          <p className="mt-3 text-gray-600 max-w-xl mx-auto text-sm">
+            Real experiences from patients who trusted our platform for their healthcare needs.
+          </p>
         </div>
 
-        <div className="relative overflow-hidden">
-          <motion.div
-            ref={containerRef}
-            className="flex gap-4"
-            animate={{ x: `-${index * slideWidthPercent}%` }}
-            transition={{ type: "tween", duration: 0.7 }}
-            style={{ width: `${(sampleUsers.length * 100) / visibleCount}%` }}
+        {/* Carousel */}
+        <div className="relative flex items-center justify-center">
+          {/* Arrows */}
+          <button
+            onClick={() => paginate(-1)}
+            className="absolute left-0 z-10 p-3 rounded-full bg-white shadow hover:scale-105 transition"
+            aria-label="Previous"
           >
-            {sampleUsers.map((u, idx) => (
-              <div key={idx} className="bg-white p-6 rounded-xl shadow-sm flex flex-col gap-4" style={{ minWidth: `${slideWidthPercent}%` }}>
-                <div className="flex items-center gap-4">
-                  <img src={u.image} alt={u.name} className="w-12 h-12 rounded-full object-cover" />
-                  <div>
-                    <p className="font-semibold">{u.name}</p>
-                    <p className="text-sm text-gray-500">{u.location}</p>
-                  </div>
-                </div>
+            ‹
+          </button>
 
-                <p className="text-gray-700">“{u.desc}”</p>
+          <button
+            onClick={() => paginate(1)}
+            className="absolute right-0 z-10 p-3 rounded-full bg-white shadow hover:scale-105 transition"
+            aria-label="Next"
+          >
+            ›
+          </button>
 
-                <div className="mt-auto flex items-center justify-end">
-                  <div className="text-yellow-400">★★★★★</div>
+          {/* Card */}
+          <AnimatePresence custom={direction} mode="wait">
+            <motion.div
+              key={index}
+              custom={direction}
+              variants={cardVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              className="bg-white rounded-2xl shadow-lg p-8 max-w-xl w-full"
+            >
+              <div className="flex items-center gap-4 mb-5">
+                <img
+                  src={users[index].image}
+                  alt={users[index].name}
+                  className="w-14 h-14 rounded-full object-cover border"
+                />
+                <div>
+                  <p className="font-semibold text-gray-900">
+                    {users[index].name}
+                  </p>
+                  <p className="text-sm text-gray-500">
+                    {users[index].location}
+                  </p>
                 </div>
               </div>
-            ))}
-          </motion.div>
+
+              <p className="text-gray-700 leading-relaxed">
+                “{users[index].desc}”
+              </p>
+
+              <div className="mt-6 text-yellow-400 text-sm">★★★★★</div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
