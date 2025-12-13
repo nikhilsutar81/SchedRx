@@ -13,14 +13,14 @@ const Banner = () => {
   };
 
   return (
-    <section className="relative my-20 md:mx-10">
+    <section className="relative my-20">
       <div
-        className="
+        className="max-w-7xl mx-auto w-full px-6
           relative overflow-hidden
           flex items-center
           bg-primary
           rounded-2xl
-          px-6 sm:px-10 md:px-14 lg:px-16
+          sm:px-10 md:px-14 lg:px-16
         "
       >
         {/* Gradient Overlay (Depth & Premium Feel) */}
