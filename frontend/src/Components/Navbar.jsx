@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useRef, useEffect } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
 import { AppContext } from "../Context/AppContex";
@@ -9,6 +9,18 @@ const Navbar = () => {
   const { token, setToken, userData } = useContext(AppContext);
   const [showMenu, setShowMenu] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
+  const userMenuRef = useRef(null);
+  // Close user menu when clicking outside
+  useEffect(() => {
+    if (!showUserMenu) return;
+    function handleClickOutside(e) {
+      if (userMenuRef.current && !userMenuRef.current.contains(e.target)) {
+        setShowUserMenu(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [showUserMenu]);
 
   const logout = () => {
     setToken(false);
@@ -61,7 +73,7 @@ const Navbar = () => {
         <div className="flex items-center gap-4">
           {/* Logged In */}
           {token && userData ? (
-            <div className="relative group">
+            <div className="relative group" ref={userMenuRef}>
               <button
                 onClick={() => setShowUserMenu((p) => !p)}
                 className="flex items-center gap-2 cursor-pointer rounded-full focus:outline-none"

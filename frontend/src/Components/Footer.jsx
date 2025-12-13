@@ -22,12 +22,12 @@ const itemVariants = {
 
 const Footer = () => {
   return (
-    <footer className="px-6">
+    <footer>
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="max-w-7xl mx-auto w-full
+        className="max-w-7xl mx-auto w-full px-6
           flex flex-col sm:grid
           grid-cols-[3fr_1fr_1fr]
           gap-14
