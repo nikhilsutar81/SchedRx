@@ -59,7 +59,7 @@ const MyProfile = () => {
               <img
                 src={image ? URL.createObjectURL(image) : userData.image}
                 alt="Profile"
-                className="w-36 h-36 rounded-full object-cover border-4 border-primary shadow"
+                className="w-36 h-36 rounded-full object-cover"
               />
               <img
                 src={assets.upload_icon}
@@ -97,7 +97,7 @@ const MyProfile = () => {
             placeholder="Full Name"
           />
         ) : (
-          <h1 className="text-3xl font-bold text-primary mt-4">
+          <h1 className="text-3xl font-bold text-gray-900 mt-4">
             {userData.name}
           </h1>
         )}
@@ -111,7 +111,7 @@ const MyProfile = () => {
 
         <div className="grid grid-cols-[120px_1fr] gap-y-4 text-sm sm:text-base">
           <span className="font-medium text-gray-700">Email</span>
-          <span className="text-blue-600 font-medium">{userData.email}</span>
+          <span className="text-gray-700 font-medium">{userData.email}</span>
 
           <span className="font-medium text-gray-700">Phone</span>
           {isEdit ? (
@@ -124,7 +124,7 @@ const MyProfile = () => {
               className="bg-gray-100 border border-gray-300 rounded-lg px-3 py-2 outline-primary max-w-xs"
             />
           ) : (
-            <span className="text-blue-600 font-medium">
+            <span className="text-gray-700 font-medium">
               {userData.phone}
             </span>
           )}
