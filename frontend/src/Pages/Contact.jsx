@@ -19,15 +19,15 @@ const Contact = () => {
         <div className="flex flex-col justify-center items-start gap-6">
           <p className="font-semibold text-lg text-gray-600">OUR OFFICE</p>
           <p className="text-gray-500">
-            00000 Willms Station <br />
-            Suite 078, New Delhi, India
+            A27 Docks Station <br />
+            Suite 78, Mumbai, India
           </p>
           <p className="text-gray-500">
             Tel: +91 923XXXXXXXX <br />
-            Email: prescripto@gmail.com
+            Email: schedrx@gmail.com
           </p>
           <p className="font-semibold text-lg text-gray-600">
-            CAREERS AT PRESCRIPTO
+            CAREERS AT SCHEDRX
           </p>
           <p lassName="text-gray-500">
             Learn more about our teams and job openings.
