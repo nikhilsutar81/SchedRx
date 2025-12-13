@@ -22,12 +22,12 @@ const itemVariants = {
 
 const Footer = () => {
   return (
-    <footer className="md:mx-10">
+    <footer className="px-6">
       <motion.div
         variants={containerVariants}
         initial="hidden"
         animate="visible"
-        className="
+        className="max-w-7xl mx-auto w-full
           flex flex-col sm:grid
           grid-cols-[3fr_1fr_1fr]
           gap-14
@@ -115,15 +115,11 @@ const Footer = () => {
       </motion.div>
 
       {/* ---------------- Copyright ---------------- */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.4 }}
-      >
-        <hr className="my-2" />
-        <p className="py-5 text-sm text-center text-gray-500">
-          © 2025 SchedRx. All rights reserved.
-        </p>
+      <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}>
+        <div className="max-w-7xl mx-auto w-full px-6">
+          <hr className="my-2" />
+          <p className="py-5 text-sm text-center text-gray-500">© 2025 SchedRx. All rights reserved.</p>
+        </div>
       </motion.div>
     </footer>
   );
