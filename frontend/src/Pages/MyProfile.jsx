@@ -81,7 +81,7 @@ const MyProfile = () => {
             <img
               src={userData.image}
               alt="Profile"
-              className="w-36 h-36 rounded-full object-cover border-4 border-primary shadow"
+              className="w-36 h-36 rounded-full object-cover"
             />
           )}
         </div>
