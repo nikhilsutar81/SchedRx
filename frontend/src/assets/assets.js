@@ -14,6 +14,9 @@ import arrow_icon from './arrow_icon.svg'
 import info_icon from './info_icon.svg'
 import upload_icon from './upload_icon.png'
 import stripe_logo from './stripe_logo.png'
+import user1 from './user1.jpg'
+import user2 from './user2.jpg'
+import user3 from './user3.jpg'
 
 import Dermatologist from './Dermatologist.svg'
 import Gastroenterologist from './Gastroenterologist.svg'
@@ -40,6 +43,9 @@ export const assets = {
     dropdown_icon,
     upload_icon,
     stripe_logo,
+    user1,
+    user2,
+    user3,
 
 }
 
