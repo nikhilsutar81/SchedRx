@@ -58,12 +58,11 @@ const Navbar = () => {
         {/* Nav Links */}
         <ul className="hidden md:flex items-center gap-6 font-semibold">
           {[
-            { name: "HOME", path: "/" },
-            { name: "ALL DOCTORS", path: "/doctors" },
-            { name: "ABOUT", path: "/about" },
-            { name: "CONTACT", path: "/contact" },
+            { name: "DOCTORS", path: "/doctors" },
+            { name: "SURGEONS", path: "/surgeons" },
+            { name: "LABTESTS", path: "/LabTests" },
           ].map((item) => (
-            <NavLink key={item.name} to={item.path} className={({ isActive }) => (isActive ? "text-primary" : "") }>
+            <NavLink key={item.name} to={item.path} className={({ isActive }) => (isActive ? "text-primary" : "")}>
               <li className="py-2 px-4 rounded-lg hover:bg-indigo-50 transition-all duration-200 cursor-pointer">{item.name}</li>
             </NavLink>
           ))}
@@ -195,10 +194,9 @@ const Navbar = () => {
 
               <ul className="flex flex-col gap-3 items-center mt-5 px-6 text-lg font-semibold">
                 {[
-                  { name: "HOME", path: "/" },
-                  { name: "ALL DOCTORS", path: "/doctors" },
-                  { name: "ABOUT", path: "/about" },
-                  { name: "CONTACT", path: "/contact" },
+                  { name: "DOCTORS", path: "/doctors" },
+                  { name: "SURGEONS", path: "/surgeons" },
+                  { name: "LABTESTS", path: "/LabTests" },
                 ].map((item) => (
                   <NavLink
                     key={item.name}
