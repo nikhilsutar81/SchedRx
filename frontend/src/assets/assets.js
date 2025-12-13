@@ -17,6 +17,7 @@ import stripe_logo from './stripe_logo.png'
 import user1 from './user1.jpg'
 import user2 from './user2.jpg'
 import user3 from './user3.jpg'
+import user4 from './user 4.jpg'
 
 import Dermatologist from './Dermatologist.svg'
 import Gastroenterologist from './Gastroenterologist.svg'
@@ -46,6 +47,7 @@ export const assets = {
     user1,
     user2,
     user3,
+    user4,
 
 }
 
